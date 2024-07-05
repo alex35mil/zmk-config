@@ -19,12 +19,13 @@
 // | SHFT |  ↑  |  Q  |  J  |  K  |  X  |   |  B  |  M   |  W  |  V  |  Z  | ESC  |
 //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &kp TAB   &kp SQT &kp COMMA &kp DOT &kp P       &kp Y     &kp F &kp G        &kp C &kp R &kp L &kp BSPC
-   &kp LCTRL &kp A   &kp O     &kp E   &mt LSHFT U &kp I     &kp D &mt RSHIFT H &kp T &kp N &kp S &kp SQT
-   &kp LSHFT &kp Z   &kp Q     &kp J   &kp K       &kp X     &kp B &kp M        &kp W &kp V &kp Z &kp ESC
-                                &mo 1 &kp LGUI &kp SPACE     &kp ESC &kp BSPC &mo 2
+   &kp TAB   &kp SQT      &kp COMMA       &kp DOT      &kp P       &kp Y     &kp F &kp G        &kp C      &kp R       &kp L      &kp BSPC
+   &kp LCTRL &mt LALT A   &mt LCTRL O     &mt LGUI E   &mt LSHFT U &kp I     &kp D &mt RSHIFT H &mt RGUI T &mt RCTRL N &mt RALT S &kp SQT
+   &kp LSHFT &kp Z        &kp Q           &kp J        &kp K       &kp X     &kp B &kp M        &kp W      &kp V       &kp Z      &kp ESC
+                                                 &mo 1 &kp ESC &kp SPACE     &kp BSPC &kp TAB &mo 2
                         >;
                 };
+
                 lower_layer {
 // -----------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
