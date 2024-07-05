@@ -1,57 +1,86 @@
-/*
- * Copyright (c) 2020 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-/ {
-        keymap {
-                compatible = "zmk,keymap";
+#include "zmk-helpers/helper.h"
+#include "zmk-helpers/key-labels/42.h"
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  '  |  ,  |  .  |  P  |  Y  |   |  F  |  G   |  C  |  R  |  L  | BKSP |
-// | CTRL |  A  |  O  |  E  |  U  |  I  |   |  D  |  H   |  T  |  N  |  S  |  '   |
-// | SHFT |  ↑  |  Q  |  J  |  K  |  X  |   |  B  |  M   |  W  |  V  |  Z  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-                        bindings = <
-   &none  &kp SQT     &kp COMMA    &kp DOT     &kp P        &kp Y      &kp F  &kp G         &kp C       &kp R        &kp L      &none
-   &none  &mt LALT A  &mt LCTRL O  &mt LGUI E  &mt LSHFT U  &kp I      &kp D  &mt RSHIFT H  &mt RGUI T  &mt RCTRL N  &mt RALT S &none
-   &none  &caps_word  &kp Q        &kp J       &kp K        &kp X      &kp B  &kp M         &kp W       &kp V        &kp Z      &none
-                                        &mo 1  &kp ESC  &kp SPACE      &kp BSPC  &kp DEL  &mo 2
-                        >;
-                };
+#define __ &trans
 
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE          &kp RET  &kp TAB   &kp RALT
-                        >;
-                };
+#define DEF 0
+#define TMP 1
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
-        };
-};
+// Timeless homerow mods
+#define HM_TAPPING_TERM 300
+#define HM_TAPPING_TERM_FAST 200
+#define HM_PRIOR_IDLE 150
+#define HM_QUICK_TAP 175
+
+#define KEYS_L  LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
+#define KEYS_R  RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
+#define KEYS_TC LH2 LH1 LH0 RH0 RH1 RH2                                                  // thumbs
+
+ZMK_HOLD_TAP(hml,
+    flavor = "balanced";
+    tapping-term-ms = <HM_TAPPING_TERM>;
+    quick-tap-ms = <HM_QUICK_TAP>;
+    require-prior-idle-ms = <HM_PRIOR_IDLE>;
+    hold-trigger-key-positions = <KEYS_R KEYS_TC>;
+    hold-trigger-on-release;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_HOLD_TAP(hmr,
+    flavor = "balanced";
+    tapping-term-ms = <HM_TAPPING_TERM>;
+    quick-tap-ms = <HM_QUICK_TAP>;
+    require-prior-idle-ms = <HM_PRIOR_IDLE>;
+    hold-trigger-key-positions = <KEYS_L KEYS_TC>;
+    hold-trigger-on-release;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_HOLD_TAP(hmlfs,
+    flavor = "balanced";
+    tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+    quick-tap-ms = <HM_QUICK_TAP>;
+    require-prior-idle-ms = <HM_PRIOR_IDLE>;
+    hold-trigger-key-positions = <KEYS_R KEYS_TC>;
+    hold-trigger-on-release;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_HOLD_TAP(hmrfs,
+    flavor = "balanced";
+    tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+    quick-tap-ms = <HM_QUICK_TAP>;
+    require-prior-idle-ms = <HM_PRIOR_IDLE>;
+    hold-trigger-key-positions = <KEYS_L KEYS_TC>;
+    hold-trigger-on-release;
+    bindings = <&kp>, <&kp>;
+)
+
+
+ZMK_LAYER(default_layer,
+// ╭────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────╮   ╭──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬────╮
+     __   &kp SINGLE_QUOTE       &kp COMMA           &kp DOT             &kp P             &kp Y                   &kp F              &kp G              &kp C              &kp R              &kp L        __
+// ├────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼────┤
+     __      &hml LALT A        &hml LCTRL O      &hml LGUI E       &hmlfs LSHFT U         &kp I                   &kp D         &hmrfs RSHFT H       &hmr RGUI T        &hmr RCTRL N        &hmr RALT S    __
+// ├────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼────┤
+     __      &caps_word            &kp Q             &kp J              &kp K              &kp X                   &kp B              &kp M              &kp W              &kp V              &kp Z        __
+// ╰─────────────────────────────────────────────────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼─────────────────────────────────────────────────────────────╯
+                                                     &mo 1             &kp ESC           &kp SPACE             &kp BACKSPACE       &kp DELETE          &kp CAPS
+//                                            ╰──────────────────┴──────────────────┴──────────────────╯   ╰──────────────────┴──────────────────┴──────────────────╯
+)
+
+ZMK_LAYER(temporary_layer,
+// ╭────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────╮   ╭──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬────╮
+     __   &kp SINGLE_QUOTE       &kp COMMA           &kp DOT             &kp P             &kp Y                   &kp F              &kp G              &kp C              &kp R              &kp L        __
+// ├────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼────┤
+     __         &kp A              &kp O             &kp E               &kp U             &kp I                 &kp LEFT           &kp DOWN            &kp UP            &kp RIGHT            &kp S        __
+// ├────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼────┤
+     __      &caps_word            &kp Q             &kp C               &kp D             &kp V                   &kp B              &kp M              &kp W              &kp V              &kp Z        __
+// ╰─────────────────────────────────────────────────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼─────────────────────────────────────────────────────────────╯
+                                                       __             &kp ESC           &kp SPACE               &kp ENTER            &kp TAB          &kp CAPS
+//                                            ╰──────────────────┴──────────────────┴──────────────────╯   ╰──────────────────┴──────────────────┴──────────────────╯
+)
