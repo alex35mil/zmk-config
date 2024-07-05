@@ -19,10 +19,10 @@
 // | SHFT |  ↑  |  Q  |  J  |  K  |  X  |   |  B  |  M   |  W  |  V  |  Z  | ESC  |
 //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &kp TAB   &kp SQT      &kp COMMA       &kp DOT      &kp P       &kp Y     &kp F &kp G        &kp C      &kp R       &kp L      &kp BSPC
-   &kp LCTRL &mt LALT A   &mt LCTRL O     &mt LGUI E   &mt LSHFT U &kp I     &kp D &mt RSHIFT H &mt RGUI T &mt RCTRL N &mt RALT S &kp SQT
-   &kp LSHFT &kp Z        &kp Q           &kp J        &kp K       &kp X     &kp B &kp M        &kp W      &kp V       &kp Z      &kp ESC
-                                                 &mo 1 &kp ESC &kp SPACE     &kp BSPC &kp TAB &mo 2
+   &none  &kp SQT     &kp COMMA    &kp DOT     &kp P        &kp Y      &kp F  &kp G         &kp C       &kp R        &kp L      &none
+   &none  &mt LALT A  &mt LCTRL O  &mt LGUI E  &mt LSHFT U  &kp I      &kp D  &mt RSHIFT H  &mt RGUI T  &mt RCTRL N  &mt RALT S &none
+   &none  &caps_word  &kp Q        &kp J       &kp K        &kp X      &kp B  &kp M         &kp W       &kp V        &kp Z      &none
+                                        &mo 1  &kp ESC  &kp SPACE      &kp BSPC  &kp DEL  &mo 2
                         >;
                 };
 
@@ -36,7 +36,7 @@
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
    &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE          &kp RET  &trans   &kp RALT
+                                    &kp LGUI     &trans       &kp SPACE          &kp RET  &kp TAB   &kp RALT
                         >;
                 };
 
