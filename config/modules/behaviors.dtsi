@@ -10,6 +10,6 @@
 #define INPUT &kp LG(LC(LA(SPACE)))
 
 ZMK_HOLD_TAP(lt_fast,
-   tapping-term-ms = <115>;
+   tapping-term-ms = <130>;
    bindings = <&mo>, <&kp>;
 )
