@@ -19,6 +19,7 @@
 
 ZMK_COMBO(Wooshy, &kp LG(LC(LA(H))), LH0 RH0, ALL)
 ZMK_COMBO(Scrolla, &kp LG(LC(LA(G))), LH1 RH1, ALL)
+ZMK_COMBO(ClearBT, &bt BT_CLR_ALL, LH2 RH2, ALL)
 
 // Homerow mods
 
