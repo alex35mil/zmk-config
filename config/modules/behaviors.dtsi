@@ -1,0 +1,15 @@
+#define __     &trans
+#define ___    &trans
+#define _X_    &none
+#define _TODO_ &none
+
+&lt {
+    tapping-term-ms = <165>;
+};
+
+#define INPUT &kp LG(LC(LA(SPACE)))
+
+ZMK_HOLD_TAP(lt_fast,
+   tapping-term-ms = <115>;
+   bindings = <&mo>, <&kp>;
+)
