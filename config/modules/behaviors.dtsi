@@ -1,6 +1,7 @@
 #define __     &trans
-#define ___    &trans
-#define _X_    &none
+#define ____   &trans
+#define _XX_   &none
+#define XXXX   &none
 #define _TODO_ &none
 
 &lt {
