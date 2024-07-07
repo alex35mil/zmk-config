@@ -1,6 +1,7 @@
 #define HRM_TAPPING_TERM 300
+#define HRM_TAPPING_TERM_MEDIUM 150
 #define HRM_TAPPING_TERM_FAST 130
-#define HRM_PRIOR_IDLE 150
+#define HRM_PRIOR_IDLE 175 // 10500/x where x is (relaxed) WPM for English prose
 
 #define KEYS_L  LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
 #define KEYS_R  RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
@@ -12,7 +13,6 @@
         bindings = <HOLD>, <TAP>; \
         tapping-term-ms = <TAPPING_TERM>; \
         quick-tap-ms = <QUICK_TAP_MS>; \
-        global-quick-tap-ms = <150>; \
         require-prior-idle-ms = <HRM_PRIOR_IDLE>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
@@ -20,5 +20,7 @@
 
 MAKE_HRM(hrml,  &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM)
 MAKE_HRM(hrmr,  &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM)
+MAKE_HRM(hrmlm, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_MEDIUM)
+MAKE_HRM(hrmrm, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_MEDIUM)
 MAKE_HRM(hrmlf, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_FAST)
 MAKE_HRM(hrmrf, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_FAST)
