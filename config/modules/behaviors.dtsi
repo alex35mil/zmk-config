@@ -12,6 +12,7 @@
 #define XXXX   &none
 #define _TODO_ &none
 
+#define HYPER &kp LS(LC(LG(LALT)))
 #define INPUT &kp LG(LC(LA(SPACE)))
 
 ZMK_HOLD_TAP(lt_fast,
