@@ -1,5 +1,5 @@
 &lt {
-    tapping-term-ms = <165>;
+    tapping-term-ms = <TAPPING_TERM>;
 };
 
 &sl {
@@ -10,17 +10,8 @@
     /delete-property/ ignore-modifiers;
 };
 
-#define __     &trans
-#define ____   &trans
-#define _XX_   &none
-#define XXXX   &none
-#define _TODO_ &none
-
-#define HYPER &kp LS(LC(LG(LALT)))
-#define INPUT &kp LG(LC(LA(SPACE)))
-
-ZMK_HOLD_TAP(lt_fast,
-   tapping-term-ms = <130>;
-   quick-tap-ms = <QUICK_TAP_MS>;
+ZMK_HOLD_TAP(tc_fast,
+   tapping-term-ms = <TAPPING_TERM_FAST>;
+   quick-tap-ms = <QUICK_TAP>;
    bindings = <&mo>, <&kp>;
 )

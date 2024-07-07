@@ -1,0 +1,14 @@
+#define TAPPING_TERM 165
+#define TAPPING_TERM_MEDIUM 150
+#define TAPPING_TERM_FAST 130
+
+#define QUICK_TAP 175
+
+#define __     &trans
+#define ____   &trans
+#define _XX_   &none
+#define XXXX   &none
+#define _TODO_ &none
+
+#define HYPER &kp LS(LC(LG(LALT)))
+#define INPUT &kp LG(LC(LA(SPACE)))
