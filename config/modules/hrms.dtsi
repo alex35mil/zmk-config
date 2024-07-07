@@ -11,6 +11,8 @@
         flavor = "balanced"; \
         bindings = <HOLD>, <TAP>; \
         tapping-term-ms = <TAPPING_TERM>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        global-quick-tap-ms = <150>; \
         require-prior-idle-ms = <HRM_PRIOR_IDLE>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
