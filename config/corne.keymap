@@ -24,6 +24,7 @@
 
 #include "modules/hrms.dtsi"
 #include "modules/combos.dtsi"
+#include "modules/macros.dtsi"
 #include "modules/behaviors.dtsi"
 #include "modules/mouse.dtsi"
 
@@ -53,7 +54,7 @@ ZMK_LAYER(Num,
 
 ZMK_LAYER(Nav,
 // ╭────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────╮   ╭──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬────╮
-     __        _TODO_             _TODO_          &kp LESS_THAN    &kp GREATER_THAN     &kp AMPERSAND            &kp GRAVE      &kp LEFT_BRACKET   &kp RIGHT_BRACKET   &kp EXCLAMATION       &kp HASH       __
+     __        &arrow           &fat_arrow        &kp LESS_THAN    &kp GREATER_THAN     &kp AMPERSAND            &kp GRAVE      &kp LEFT_BRACKET   &kp RIGHT_BRACKET   &kp EXCLAMATION       &kp HASH       __
 // ├────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼────┤
      __       &kp LALT           &kp LCTRL       &hrml LCMD LBRC   &hrml LSHFT RBRC         INPUT                &kp LEFT           &kp DOWN            &kp UP            &kp RIGHT          &kp COLON      __
 // ├────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤   ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼────┤

@@ -1,0 +1,7 @@
+ZMK_MACRO(arrow,
+    bindings = <&kp MINUS &kp GT>;
+)
+
+ZMK_MACRO(fat_arrow,
+    bindings = <&kp EQUAL &kp GT>;
+)
