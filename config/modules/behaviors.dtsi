@@ -2,6 +2,10 @@
     tapping-term-ms = <165>;
 };
 
+&sl {
+    release-after-ms = <5000>;
+};
+
 &caps_word {
     /delete-property/ ignore-modifiers;
 };
