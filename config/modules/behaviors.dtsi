@@ -1,12 +1,16 @@
+&lt {
+    tapping-term-ms = <165>;
+};
+
+&caps_word {
+    /delete-property/ ignore-modifiers;
+};
+
 #define __     &trans
 #define ____   &trans
 #define _XX_   &none
 #define XXXX   &none
 #define _TODO_ &none
-
-&lt {
-    tapping-term-ms = <165>;
-};
 
 #define INPUT &kp LG(LC(LA(SPACE)))
 
