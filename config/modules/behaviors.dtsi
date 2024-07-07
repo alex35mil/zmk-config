@@ -21,5 +21,6 @@
 
 ZMK_HOLD_TAP(lt_fast,
    tapping-term-ms = <130>;
+   quick-tap-ms = <200>;
    bindings = <&mo>, <&kp>;
 )
