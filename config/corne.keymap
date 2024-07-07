@@ -15,17 +15,17 @@
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/key-labels/42.h"
 
-#include "modules/hrms.dtsi"
-#include "modules/combos.dtsi"
-#include "modules/behaviors.dtsi"
-#include "modules/mouse.dtsi"
-
 // Layers
 
 #define BASE  0
 #define NUM   1
 #define NAV   2
 #define MOUSE 3
+
+#include "modules/hrms.dtsi"
+#include "modules/combos.dtsi"
+#include "modules/behaviors.dtsi"
+#include "modules/mouse.dtsi"
 
 ZMK_LAYER(Base,
 // ╭────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────╮   ╭──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬────╮

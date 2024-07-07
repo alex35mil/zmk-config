@@ -1,4 +1,7 @@
 ZMK_COMBO(Esc, &hrmrf RS(RCMD) ESC, RM1 RM2, ALL)
 ZMK_COMBO(Wooshy, &kp LG(LC(LA(H))), LH0 RH0, ALL)
 ZMK_COMBO(Scrolla, &hrmlf LS(LCMD) LG(LC(LA(G))), LM1 LM2, ALL)
-ZMK_COMBO(ClearBT, &bt BT_CLR_ALL, LH2 RH2, ALL)
+
+ZMK_COMBO(BootloaderLeft, &bootloader, LB5 LB4 LB3 LB2 LB1, BASE)
+ZMK_COMBO(BootloaderRight, &bootloader, RB1 RB2 RB3 RB4 RB5, BASE)
+ZMK_COMBO(ClearBluetooth, &bt BT_CLR_ALL, LH2 RH2, BASE)
