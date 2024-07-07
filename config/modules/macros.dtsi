@@ -1,0 +1,94 @@
+// ->
+ZMK_MACRO(arrow,
+    bindings = <&kp MINUS &kp GT>;
+)
+
+// =>
+ZMK_MACRO(fat_arrow,
+    bindings = <&kp EQUAL &kp GT>;
+)
+
+// Glyphs
+
+// ⇧
+ZMK_MACRO(g_shift,
+    bindings = <&kp BACKSLASH &kp S &kp H &kp I &kp F &kp T>;
+)
+
+// ⌘
+ZMK_MACRO(g_cmd,
+    bindings = <&kp BACKSLASH &kp C &kp M &kp D>;
+)
+
+// ⌃
+ZMK_MACRO(g_ctrl,
+    bindings = <&kp BACKSLASH &kp C &kp T &kp R &kp L>;
+)
+
+// ⌥
+ZMK_MACRO(g_opt,
+    bindings = <&kp BACKSLASH &kp O &kp P &kp T>;
+)
+
+// ←
+ZMK_MACRO(g_left,
+    bindings = <&kp BACKSLASH &kp L &kp E &kp F &kp T>;
+)
+
+// ↓
+ZMK_MACRO(g_down,
+    bindings = <&kp BACKSLASH &kp D &kp O &kp W &kp N>;
+)
+
+// ↑
+ZMK_MACRO(g_up,
+    bindings = <&kp BACKSLASH &kp U &kp P>;
+)
+
+// →
+ZMK_MACRO(g_right,
+    bindings = <&kp BACKSLASH &kp R &kp I &kp G &kp H &kp T>;
+)
+
+// ␣
+ZMK_MACRO(g_space,
+    bindings = <&kp BACKSLASH &kp S &kp P &kp A &kp C &kp E>;
+)
+
+ZMK_HOLD_TAP(lt_g_space,
+    flavor = "hold-preferred";
+    tapping-term-ms = <200>;
+    bindings = <&mo>, <&g_space>;
+)
+
+#define LT_G_SPACE &lt_g_space GLYPHS2 0
+
+// ⌫
+ZMK_MACRO(g_backspace,
+    bindings = <&kp BACKSLASH &kp B &kp A &kp C &kp K &kp S &kp P &kp A &kp C &kp E>;
+)
+
+// ⌦
+ZMK_MACRO(g_delete,
+    bindings = <&kp BACKSLASH &kp D &kp E &kp L &kp E &kp T &kp E>;
+)
+
+// ↵
+ZMK_MACRO(g_return,
+    bindings = <&kp BACKSLASH &kp R &kp E &kp T &kp U &kp R &kp N>;
+)
+
+// ⇥
+ZMK_MACRO(g_tab,
+    bindings = <&kp BACKSLASH &kp T &kp A &kp B>;
+)
+
+// ⎋
+ZMK_MACRO(g_esc,
+    bindings = <&kp BACKSLASH &kp E &kp S &kp C>;
+)
+
+// ×
+ZMK_MACRO(g_multiply,
+    bindings = <&kp BACKSLASH &kp X &kp X &kp X>;
+)
