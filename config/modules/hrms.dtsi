@@ -1,26 +1,25 @@
 #define HRM_TAPPING_TERM 300
 #define HRM_TAPPING_TERM_MEDIUM TAPPING_TERM_MEDIUM
 #define HRM_TAPPING_TERM_FAST TAPPING_TERM_FAST
-#define HRM_PRIOR_IDLE 175 // 10500/x where x is (relaxed) WPM for English prose
 
 #define KEYS_L  LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
 #define KEYS_R  RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
 #define KEYS_TC LH2 LH1 LH0 RH0 RH1 RH2                                                  // thumbs
 
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS, TAPPING_TERM) \
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS, TAPPING_TERM, PRIOR_IDLE) \
     ZMK_HOLD_TAP(NAME, \
         flavor = "balanced"; \
         bindings = <HOLD>, <TAP>; \
         tapping-term-ms = <TAPPING_TERM>; \
         quick-tap-ms = <QUICK_TAP>; \
-        require-prior-idle-ms = <HRM_PRIOR_IDLE>; \
+        require-prior-idle-ms = <PRIOR_IDLE>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
     )
 
-MAKE_HRM(hrml,  &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM)
-MAKE_HRM(hrmr,  &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM)
-MAKE_HRM(hrmlm, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_MEDIUM)
-MAKE_HRM(hrmrm, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_MEDIUM)
-MAKE_HRM(hrmlf, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_FAST)
-MAKE_HRM(hrmrf, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_FAST)
+MAKE_HRM(hrml,  &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+MAKE_HRM(hrmr,  &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+MAKE_HRM(hrmlm, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
+MAKE_HRM(hrmrm, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
+MAKE_HRM(hrmlf, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE_FAST)
+MAKE_HRM(hrmrf, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE_FAST)

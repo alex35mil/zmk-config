@@ -1,4 +1,4 @@
-ZMK_COMBO(Esc,      &hrmrf RS(RCMD) ESC, RM1 RM2, BASE NUM NAV MOUSE)
+ZMK_COMBO(Esc,      &hrmrf RS(RCMD) ESC, RM1 RM2, BASE NUM NAV MOUSE, 50, 250)
 ZMK_COMBO(GlyphEsc, &g_esc,              RM1 RM2, GLYPHS1 GLYPHS2)
 
 ZMK_COMBO(Wooshy,  &kp LG(LC(LA(H))), LH0 RH0, ALL)
