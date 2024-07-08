@@ -14,4 +14,9 @@
 #define _TODO_           &none
 
 #define HYPER LS(LC(LG(LALT)))
-#define INPUT LG(LC(LA(SPACE)))
+
+#define INPUT_SWITCH LG(LC(LA(SPACE)))
+#define MENU_FOCUS LC(F2)
+#define TRAY_FOCUS F21
+#define MISSION_CONTROL LG(LC(LA(M)))
+#define STAGE_MANAGER LG(LC(LA(S)))
