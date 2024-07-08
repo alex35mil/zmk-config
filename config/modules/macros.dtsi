@@ -3,10 +3,22 @@ ZMK_MACRO(arrow,
     bindings = <&kp MINUS &kp GT>;
 )
 
+ZMK_HOLD_TAP(arrow_mod,
+   tapping-term-ms = <TAPPING_TERM_MEDIUM>;
+   bindings = <&kp>, <&arrow>;
+)
+#define ARROW(MOD) &arrow_mod MOD 0
+
 // =>
 ZMK_MACRO(fat_arrow,
     bindings = <&kp EQUAL &kp GT>;
 )
+
+ZMK_HOLD_TAP(fat_arrow_mod,
+   tapping-term-ms = <TAPPING_TERM_MEDIUM>;
+   bindings = <&kp>, <&fat_arrow>;
+)
+#define FAT_ARROW(MOD) &fat_arrow_mod MOD 0
 
 // Glyphs
 
