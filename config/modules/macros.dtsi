@@ -22,6 +22,12 @@ ZMK_HOLD_TAP(fat_arrow_mod,
 
 // Glyphs
 
+ZMK_HOLD_TAP(glyphs_mod,
+   tapping-term-ms = <TAPPING_TERM>;
+   bindings = <&kp>, <&sl>;
+)
+#define GLYPHS(MOD) &glyphs_mod MOD GLYPHS1
+
 // ⇧
 ZMK_MACRO(g_shift,
     bindings = <&kp BACKSLASH &kp S &kp H &kp I &kp F &kp T>;
@@ -72,7 +78,6 @@ ZMK_HOLD_TAP(lt_g_space,
     tapping-term-ms = <200>;
     bindings = <&mo>, <&g_space>;
 )
-
 #define LT_G_SPACE &lt_g_space GLYPHS2 0
 
 // ⌫
