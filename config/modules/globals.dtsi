@@ -4,13 +4,14 @@
 
 #define QUICK_TAP 175
 
-#define __     &trans
-#define ____   &trans
-#define _XX_   &none
-#define XXXX   &none
-#define _TODO_ &none
 #define PRIOR_IDLE      175 // 10500/x where x is (relaxed) WPM for English prose
 #define PRIOR_IDLE_FAST 150
 
-#define HYPER &kp LS(LC(LG(LALT)))
-#define INPUT &kp LG(LC(LA(SPACE)))
+#define __               &trans
+#define ____             &trans
+#define _XX_             &none
+#define XXXXXXXXXXXXXXXX &none
+#define _TODO_           &none
+
+#define HYPER LS(LC(LG(LALT)))
+#define INPUT LG(LC(LA(SPACE)))
