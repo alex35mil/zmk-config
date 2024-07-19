@@ -1,0 +1,102 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# Set variables
+GITHUB_USER="alex35mil"
+GITHUB_REPO="chocofi-zmk-config"
+GITHUB_TOKEN="$GITHUB_TOKEN"
+
+BUILD_DIR="build"
+
+# Parse command line arguments
+SKIP_TIMESTAMP_CHECK=false
+if [ $# -gt 0 ]; then
+    if [ "$1" == "--skip-timestamp-check" ]; then
+        SKIP_TIMESTAMP_CHECK=true
+    else
+        echo "Error: Unknown argument. Use --skip-timestamp-check if needed."
+        exit 1
+    fi
+fi
+
+# Check if GITHUB_TOKEN is set
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo "Error: GITHUB_TOKEN is not set."
+    exit 1
+fi
+
+# Clean stale builds
+echo "❯ Cleaning stale builds..."
+rm -rf "$BUILD_DIR"/*
+
+# Get the current branch name
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+check_workflow_run() {
+    curl -s -H "Authorization: token $GITHUB_TOKEN" \
+    "https://api.github.com/repos/$GITHUB_USER/$GITHUB_REPO/actions/runs?branch=$CURRENT_BRANCH" \
+    | jq -r '.workflow_runs[0] | {id: .id, conclusion: .conclusion, created_at: .created_at}'
+}
+
+# Get the most recent workflow run
+echo "❯ Getting the firmware from GitHub..."
+start_time=$(date +%s)
+
+run_info=$(check_workflow_run)
+created_at=$(echo "$run_info" | jq -r '.created_at')
+run_id=$(echo "$run_info" | jq -r '.id')
+
+if [ "$SKIP_TIMESTAMP_CHECK" = true ]; then
+    echo "Timestamp check skipped. Using the latest workflow run."
+else
+    # Calculate how long ago the run started
+    current_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    time_since_start=$(( $(date -u -j -f "%Y-%m-%dT%H:%M:%SZ" "$current_time" +%s) - $(date -u -j -f "%Y-%m-%dT%H:%M:%SZ" "$created_at" +%s) ))
+
+    # Expected run time is 2m30s (150 seconds)
+    expected_run_time=150
+
+    if [ $time_since_start -lt $expected_run_time ]; then
+        initial_sleep=$((expected_run_time - time_since_start))
+        echo "Workflow run started $time_since_start seconds ago. Waiting for $initial_sleep more seconds..."
+        sleep $initial_sleep
+    else
+        echo "Workflow run started $time_since_start seconds ago. Checking status immediately..."
+    fi
+fi
+
+# Now check the status and wait if necessary
+while true; do
+    run_info=$(check_workflow_run)
+    status=$(echo "$run_info" | jq -r '.conclusion')
+
+    if [ "$status" = "success" ]; then
+        echo "GitHub Action completed successfully."
+        break
+    elif [ "$status" = "null" ]; then
+        echo "Action is still running. Checking again in 5 seconds..."
+        sleep 5
+    else
+        echo "Error: GitHub Action failed or was cancelled. Status: $status. Exiting."
+        exit 1
+    fi
+done
+
+# Download the artifact
+echo "❯ Downloading firmware artifact..."
+artifact_url=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+    "https://api.github.com/repos/$GITHUB_USER/$GITHUB_REPO/actions/runs/$run_id/artifacts" \
+    | jq -r '.artifacts[0].archive_download_url')
+
+curl -L -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$artifact_url" -o "$BUILD_DIR/firmware.zip"
+
+# Check if the download was successful
+if [ ! -s "$BUILD_DIR/firmware.zip" ]; then
+    echo "Error: Downloaded firmware file is empty. Download may have failed."
+    exit 1
+fi
+
+echo "Firmware fetched successfully."

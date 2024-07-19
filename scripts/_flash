@@ -1,0 +1,66 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# Set variables
+BUILD_DIR="build"
+FIRMWARE_DIR="$BUILD_DIR/firmware"
+
+if [ $# -eq 0 ]; then
+    echo "Error: Side ('left' or 'right') must be provided."
+    exit 1
+fi
+
+SIDE="$1"
+
+if [[ "$SIDE" != "left" && "$SIDE" != "right" ]]; then
+    echo "Error: Invalid argument. Use 'left' or 'right'."
+    exit 1
+fi
+
+echo "❯ Flashing the $SIDE side..."
+
+FIRMWARE_FILE="corne_${SIDE} nice_view_adapter nice_view-nice_nano_v2-zmk.uf2"
+
+find_keyboard() {
+    local disk_id
+    local mount_point
+    disk_id=$(diskutil list | grep NICENANO | awk '{print $NF}')
+    if [ -z "$disk_id" ]; then
+        echo "Error: NICENANO disk not found. Make sure the keyboard is in bootloader mode." >&2
+        exit 1
+    fi
+    mount_point=$(diskutil info "$disk_id" | grep "Mount Point" | cut -d ':' -f2 | xargs)
+    echo "$mount_point"
+}
+
+# Unzip the firmware archive
+echo "❯ Unzipping firmware..."
+
+if [ ! -f "$BUILD_DIR/firmware.zip" ]; then
+    echo "Error: firmware.zip not found in $BUILD_DIR"
+    exit 1
+fi
+
+unzip -o "$BUILD_DIR/firmware.zip" -d "$FIRMWARE_DIR"
+
+# Copy the specific firmware to the NICENANO storage
+echo "❯ Copying $SIDE side firmware to NICENANO..."
+
+# Find the NICENANO mount point
+KEYBOARD=$(find_keyboard)
+echo "Keyboard found at: $KEYBOARD"
+
+# Attempt to copy the file
+error_msg=$(cp "$FIRMWARE_DIR/$FIRMWARE_FILE" "$KEYBOARD/" 2>&1) || {
+    if [[ $error_msg == *"fcopyfile failed: Input/output error"* ]]; then
+        # macOS errors out on cp to the NICENANO, but it's actually successful
+    else
+        echo "Error: $error_msg"
+        exit 1
+    fi
+}
+
+echo "Flashed the $SIDE side 🚀"

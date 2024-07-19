@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# Extract arguments
+SIDE="${1:-}"
+
+SKIP_TIMESTAMP_CHECK=""
+
+if [ $# -gt 1 ]; then
+    SKIP_TIMESTAMP_CHECK="$2"
+fi
+
+# Run the scripts
+scripts/_fetch $SKIP_TIMESTAMP_CHECK
+scripts/_flash $SIDE
