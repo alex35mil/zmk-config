@@ -46,17 +46,17 @@ fi
 
 unzip -o "$BUILD_DIR/firmware.zip" -d "$FIRMWARE_DIR"
 
-# Copy the specific firmware to the NICENANO storage
+# Copy the firmware to the keyboard
 echo "❯ Copying $SIDE side firmware to NICENANO..."
 
-# Find the NICENANO mount point
 KEYBOARD=$(find_keyboard)
 echo "Keyboard found at: $KEYBOARD"
 
-# Attempt to copy the file
+# Attempt to copy the firmware to the keyboard
 error_msg=$(cp "$FIRMWARE_DIR/$FIRMWARE_FILE" "$KEYBOARD/" 2>&1) || {
     if [[ $error_msg == *"fcopyfile failed: Input/output error"* ]]; then
         # macOS errors out on cp to the NICENANO, but it's actually successful
+        :
     else
         echo "Error: $error_msg"
         exit 1
