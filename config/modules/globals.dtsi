@@ -4,8 +4,9 @@
 
 #define QUICK_TAP 175
 
-#define PRIOR_IDLE      175 // 10500/x where x is (relaxed) WPM for English prose
-#define PRIOR_IDLE_FAST 150
+#define PRIOR_IDLE        175 // 10500/x where x is (relaxed) WPM for English prose
+#define PRIOR_IDLE_MEDIUM 160
+#define PRIOR_IDLE_FAST   150
 
 #define __               &trans
 #define ____             &trans
