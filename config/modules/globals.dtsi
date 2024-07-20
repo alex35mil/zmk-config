@@ -21,3 +21,4 @@
 #define TRAY_FOCUS F21
 #define MISSION_CONTROL LG(LC(LA(M)))
 #define STAGE_MANAGER LG(LC(LA(S)))
+#define WIDGETS LG(LC(LA(N)))
