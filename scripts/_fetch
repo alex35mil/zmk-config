@@ -79,8 +79,11 @@ while true; do
     elif [ "$status" = "null" ]; then
         echo "Action is still running. Checking again in 5 seconds..."
         sleep 5
+    elif [ "$status" = "failure" ]; then
+        echo "Error: The latest build failed. Exiting."
+        exit 1
     else
-        echo "Error: GitHub Action failed or was cancelled. Status: $status. Exiting."
+        echo "Error: Unexpected workflow status: $status. Exiting."
         exit 1
     fi
 done
