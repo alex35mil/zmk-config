@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# This script automates the process of flashing firmware.
+# It downloads the latest firmware from GitHub Actions and flashes it to the keyboard.
+# It can update either the left or the right side of the keyboard.
+# When updating the right side, it skips the firmware download and uses the already downloaded one.
+#
+# Prerequisites:
+#   - Make sure the following environment variables are set:
+#       GITHUB_USER="my-github-username"
+#       GITHUB_REPO="my-zmk-config"
+#       GITHUB_TOKEN="github_pat_XXXXXXXXXXXXXXXX"
+#
+# Usage:
+#   scripts/update <side> [--skip-timestamp-check]
+#
+# Arguments:
+#   <side>                    Required.
+#                             Specifies which side of the keyboard to update.
+#                             Must be either 'left' or 'right'.
+#
+#   [--skip-timestamp-check]  Optional.
+#                             If provided, skips the build timestamp check when fetching the firmware
+#                             and just uses the latest available version.
+#
+# Examples:
+#   scripts/update left
+#   scripts/update right
+#   scripts/update left --skip-timestamp-check
+#
+# Workflow:
+#   - Connect the dedicated keyboard half to the computer.
+#   - Enter the bootloader mode on the connected half.
+#   - Run the script.
+
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -13,6 +46,20 @@ if [ $# -gt 1 ]; then
     SKIP_TIMESTAMP_CHECK="$2"
 fi
 
+# Validate SIDE
+if [ -z "$SIDE" ]; then
+    echo "Error: Side ('left' or 'right') must be provided."
+    exit 1
+fi
+
+if [[ "$SIDE" != "left" && "$SIDE" != "right" ]]; then
+    echo "Error: Invalid argument. Use 'left' or 'right'."
+    exit 1
+fi
+
 # Run the scripts
-scripts/_fetch $SKIP_TIMESTAMP_CHECK
+if [ "$SIDE" = "left" ]; then
+    scripts/_fetch $SKIP_TIMESTAMP_CHECK
+fi
+
 scripts/_flash $SIDE

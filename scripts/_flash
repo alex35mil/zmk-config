@@ -44,7 +44,11 @@ if [ ! -f "$BUILD_DIR/firmware.zip" ]; then
     exit 1
 fi
 
-unzip -o "$BUILD_DIR/firmware.zip" -d "$FIRMWARE_DIR"
+if [ ! -d "$FIRMWARE_DIR" ] || [ ! -f "$FIRMWARE_DIR/$FIRMWARE_FILE" ]; then
+    unzip -o "$BUILD_DIR/firmware.zip" -d "$FIRMWARE_DIR"
+else
+    echo "❯ Firmware already unzipped, skipping extraction."
+fi
 
 # Copy the firmware to the keyboard
 echo "❯ Copying $SIDE side firmware to NICENANO..."

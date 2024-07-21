@@ -5,8 +5,8 @@ set -o nounset
 set -o pipefail
 
 # Set variables
-GITHUB_USER="alex35mil"
-GITHUB_REPO="chocofi-zmk-config"
+GITHUB_USER="$GITHUB_USER"
+GITHUB_REPO="$GITHUB_REPO"
 GITHUB_TOKEN="$GITHUB_TOKEN"
 
 BUILD_DIR="build"
@@ -55,6 +55,12 @@ else
     # Calculate how long ago the run started
     current_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
     time_since_start=$(( $(date -u -j -f "%Y-%m-%dT%H:%M:%SZ" "$current_time" +%s) - $(date -u -j -f "%Y-%m-%dT%H:%M:%SZ" "$created_at" +%s) ))
+
+    # Check if the build is older than 5 minutes (300 seconds)
+    if [ $time_since_start -gt 300 ]; then
+        echo "Error: The latest build is older than 5 minutes. Use --skip-timestamp-check if you want to skip this check and use the latest build."
+        exit 1
+    fi
 
     # Expected run time is 2m30s (150 seconds)
     expected_run_time=150
