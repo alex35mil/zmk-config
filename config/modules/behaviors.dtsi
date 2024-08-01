@@ -14,7 +14,7 @@ ZMK_HOLD_TAP(caps_word_mod,
    tapping-term-ms = <TAPPING_TERM>;
    bindings = <&kp>, <&caps_word>;
 )
-#define CAPSWORD(MOD) &caps_word_mod MOD 0
+#define CAPS_WORD(MOD) &caps_word_mod MOD 0
 
 ZMK_HOLD_TAP(tc_fast,
    tapping-term-ms = <TAPPING_TERM_FAST>;
