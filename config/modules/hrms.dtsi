@@ -12,7 +12,6 @@
         bindings = <HOLD>, <TAP>; \
         tapping-term-ms = <TAPPING_TERM>; \
         quick-tap-ms = <QUICK_TAP>; \
-        require-prior-idle-ms = <PRIOR_IDLE>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
     )
