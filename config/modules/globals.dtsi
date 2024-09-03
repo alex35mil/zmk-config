@@ -16,7 +16,7 @@
 
 #define HYPER LS(LC(LG(LALT)))
 
-#define INPUT_SWITCH LG(LC(LA(SPACE)))
+#define LANG LG(LC(LA(SPACE)))
 #define MENU_FOCUS LC(F2)
 #define TRAY_FOCUS F21
 #define MISSION_CONTROL LG(LC(LA(M)))
