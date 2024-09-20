@@ -10,14 +10,39 @@
     /delete-property/ ignore-modifiers;
 };
 
+// Caps word
 ZMK_HOLD_TAP(caps_word_mod,
    tapping-term-ms = <TAPPING_TERM>;
    bindings = <&kp>, <&caps_word>;
 )
 #define CAPS_WORD(MOD) &caps_word_mod MOD 0
 
+// Fast tappping
 ZMK_HOLD_TAP(tc_fast,
    tapping-term-ms = <TAPPING_TERM_FAST>;
    quick-tap-ms = <QUICK_TAP>;
    bindings = <&mo>, <&kp>;
 )
+
+// Curly / Square brackets
+ZMK_MOD_MORPH(cur_sqr_l,
+    bindings = <&kp LEFT_BRACE>, <&kp LEFT_BRACKET>;
+    mods = <(MOD_LGUI|MOD_LSFT)>;
+)
+
+ZMK_MOD_MORPH(cur_sqr_r,
+    bindings = <&kp RIGHT_BRACE>, <&kp RIGHT_BRACKET>;
+    mods = <(MOD_LGUI|MOD_LSFT)>;
+)
+
+// Parenthesis / Angle brackets
+ZMK_MOD_MORPH(par_ang_l,
+    bindings = <&kp LEFT_PARENTHESIS>, <&kp LESS_THAN>;
+    mods = <(MOD_LGUI|MOD_LSFT)>;
+)
+
+ZMK_MOD_MORPH(par_ang_r,
+    bindings = <&kp RIGHT_PARENTHESIS>, <&kp GREATER_THAN>;
+    mods = <(MOD_LGUI|MOD_LSFT)>;
+)
+
