@@ -17,7 +17,19 @@ ZMK_HOLD_TAP(caps_word_mod,
 )
 #define CAPS_WORD(MOD) &caps_word_mod MOD 0
 
-// Fast tappping
+// Thumb cluster tapping
+ZMK_HOLD_TAP(tc_norm,
+   tapping-term-ms = <TAPPING_TERM>;
+   quick-tap-ms = <QUICK_TAP>;
+   bindings = <&mo>, <&kp>;
+)
+
+ZMK_HOLD_TAP(tc_med,
+   tapping-term-ms = <TAPPING_TERM_MEDIUM>;
+   quick-tap-ms = <QUICK_TAP>;
+   bindings = <&mo>, <&kp>;
+)
+
 ZMK_HOLD_TAP(tc_fast,
    tapping-term-ms = <TAPPING_TERM_FAST>;
    quick-tap-ms = <QUICK_TAP>;
