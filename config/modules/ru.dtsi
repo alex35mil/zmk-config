@@ -1,0 +1,27 @@
+// Homerow mods
+MAKE_HRM(ru_f_hrm,  &kp, &ru_f,  KEYS_R KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+MAKE_HRM(ru_bi_hrm, &kp, &ru_bi, KEYS_R KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+MAKE_HRM(ru_v_hrm,  &kp, &ru_v,  KEYS_R KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
+MAKE_HRM(ru_a_hrm,  &kp, &ru_a,  KEYS_R KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE)
+
+MAKE_HRM(ru_o_hrm,  &kp, &ru_o,  KEYS_L KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE)
+MAKE_HRM(ru_l_hrm,  &kp, &ru_l,  KEYS_L KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
+MAKE_HRM(ru_d_hrm,  &kp, &ru_d,  KEYS_L KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+MAKE_HRM(ru_zh_hrm, &kp, &ru_zh, KEYS_L KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+
+#define RU_F(MOD)  &ru_f_hrm  MOD 0
+#define RU_BI(MOD) &ru_bi_hrm MOD 0
+#define RU_V(MOD)  &ru_v_hrm  MOD 0
+#define RU_A(MOD)  &ru_a_hrm  MOD 0
+
+#define RU_O(MOD)  &ru_o_hrm  MOD 0
+#define RU_L(MOD)  &ru_l_hrm  MOD 0
+#define RU_D(MOD)  &ru_d_hrm  MOD 0
+#define RU_ZH(MOD) &ru_zh_hrm MOD 0
+
+// Raise layer
+ZMK_HOLD_TAP(ru_r_raise,
+   tapping-term-ms = <TAPPING_TERM>;
+   bindings = <&mo>, <&ru_r>;
+)
+#define RU_R_RAISE &ru_r_raise RU2 0
