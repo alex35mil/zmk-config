@@ -6,6 +6,8 @@
 /*  ╰───────────╮ 36  37  38 │ 39  40  41 ╭───────────╯ ╰───────────╮ LH2 LH1 LH0 │ RH0 RH1 RH2 ╭───────────╯  */
 /*              ╰────────────┴────────────╯                         ╰─────────────┴─────────────╯              */
 
+#define HOST_OS 2 // macOS
+
 #include <behaviors.dtsi>
 
 #include <dt-bindings/zmk/keys.h>
@@ -13,8 +15,6 @@
 
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/key-labels/42.h"
-
-#include "modules/globals.dtsi"
 
 // Layers
 
@@ -33,6 +33,7 @@
 #define GLYPHS2  12
 #define SYS      13
 
+#include "modules/globals.dtsi"
 #include "modules/hrms.dtsi"
 #include "modules/macros.dtsi"
 #include "modules/behaviors.dtsi"
