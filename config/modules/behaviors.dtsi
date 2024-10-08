@@ -18,19 +18,19 @@ ZMK_HOLD_TAP(caps_word_mod,
 #define CAPS_WORD(MOD) &caps_word_mod MOD 0
 
 // Thumb cluster tapping
-ZMK_HOLD_TAP(tc_norm,
+ZMK_HOLD_TAP(tcn,
    tapping-term-ms = <TAPPING_TERM>;
    quick-tap-ms = <QUICK_TAP>;
    bindings = <&mo>, <&kp>;
 )
 
-ZMK_HOLD_TAP(tc_med,
+ZMK_HOLD_TAP(tcm,
    tapping-term-ms = <TAPPING_TERM_MEDIUM>;
    quick-tap-ms = <QUICK_TAP>;
    bindings = <&mo>, <&kp>;
 )
 
-ZMK_HOLD_TAP(tc_fast,
+ZMK_HOLD_TAP(tcf,
    tapping-term-ms = <TAPPING_TERM_FAST>;
    quick-tap-ms = <QUICK_TAP>;
    bindings = <&mo>, <&kp>;
@@ -57,4 +57,3 @@ ZMK_MOD_MORPH(par_ang_r,
     bindings = <&kp RIGHT_PARENTHESIS>, <&kp GREATER_THAN>;
     mods = <MOD_LSFT>;
 )
-

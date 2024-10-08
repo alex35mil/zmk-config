@@ -13,7 +13,6 @@
 
 #define HYPER LS(LC(LG(LALT)))
 
-#define LANG LG(LC(LA(SPACE)))
 #define MENU_FOCUS LC(F2)
 #define TRAY_FOCUS F20
 #define MISSION_CONTROL LG(LC(LA(M)))

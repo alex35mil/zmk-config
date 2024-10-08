@@ -1,6 +1,135 @@
+#define HOST_OS_LANG_SWITCH LG(LC(LA(SPACE)))
+#define LANG HOST_OS_LANG_SWITCH
+
+ZMK_MACRO(lang_switch,
+    bindings = <&tog RU_BASE &kp HOST_OS_LANG_SWITCH>;
+)
+
+// --- Charmaps
+
+// Alphabet
+#define RU_A    F         // а
+#define RU_B    COMMA     // б
+#define RU_V    D         // в
+#define RU_G    U         // г
+#define RU_D    L         // д
+#define RU_E    T         // е
+#define RU_YO   BACKSLASH // ё
+#define RU_ZH   SEMI      // ж
+#define RU_Z    P         // з
+#define RU_I    B         // и
+#define RU_II   Q         // й
+#define RU_K    R         // к
+#define RU_L    K         // л
+#define RU_M    V         // м
+#define RU_N    Y         // н
+#define RU_O    J         // о
+#define RU_P    G         // п
+#define RU_R    H         // р
+#define RU_S    C         // с
+#define RU_T    N         // т
+#define RU_U    E         // у
+#define RU_F    A         // ф
+#define RU_H    LBKT      // х
+#define RU_TS   W         // ц
+#define RU_CH   X         // ч
+#define RU_SH   I         // ш
+#define RU_SHCH O         // щ
+#define RU_HARD RBKT      // ъ
+#define RU_YI   S         // ы
+#define RU_SOFT M         // ь
+#define RU_YE   APOS      // э
+#define RU_YU   DOT       // ю
+#define RU_YA   Z         // я
+
+// Symbols
+#define RU_GRAVE             LA(RIGHT_PARENTHESIS) // `
+#define RU_SQT               LA(LEFT_PARENTHESIS)  // '
+#define RU_DQT               LS(N2)                // "
+#define RU_PERCENT           LS(N4)                // %
+#define RU_COLON             LS(N5)                // :
+#define RU_COMMA             LS(N6)                // ,
+#define RU_DOT               LS(N7)                // .
+#define RU_SEMI              LS(N8)                // ;
+#define RU_AT                LA(N2)                // @
+#define RU_HASH              LA(N3)                // #
+#define RU_DOLLAR            LA(N4)                // $
+#define RU_CARET             LA(N6)                // ^
+#define RU_AMPERSAND         LA(N7)                // &
+#define RU_ASTERISK          LA(N8)                // *
+#define RU_PIPE              LS(LA(N1))            // |
+#define RU_TILDE             LS(LA(M))             // ~
+
+#define RU_LEFT_BRACE        LA(N9)                // {
+#define RU_RIGHT_BRACE       LA(N0)                // }
+#define RU_LEFT_BRACKET      LS(GRAVE)             // [
+#define RU_RIGHT_BRACKET     GRAVE                 // ]
+#define RU_LEFT_PARENTHESIS  LS(N9)                // (
+#define RU_RIGHT_PARENTHESIS LS(N0)                // )
+#define RU_LESS_THAN         LS(LA(COMMA))         // <
+#define RU_GREATER_THAN      LS(LA(DOT))           // >
+
+#define RU_PLUS              PLUS                  // +
+#define RU_MINUS             MINUS                 // -
+#define RU_EQUAL             EQUAL                 // =
+#define RU_UNDER             UNDER                 // _
+#define RU_SLASH             SLASH                 // /
+#define RU_QUESTION          QUESTION              // ?
+#define RU_EXCLAMATION       EXCLAMATION           // !
+
+// --- Mods ⌘ ⌃ ⌥ ⇧
+
+// General mods
+#define RU_KEY(key, RU, EN) \
+    ZMK_MOD_MORPH(__ru_ ## key, \
+        bindings = <&kp EN>, <&kp EN>; \
+        mods = <(MOD_LSFT|MOD_RSFT)>; \
+        keep-mods = <(MOD_LSFT|MOD_RSFT)>; \
+    ) \
+      \
+    ZMK_MOD_MORPH(ru_ ## key, \
+        bindings = <&kp RU_ ## RU>, <&__ru_ ## key>; \
+        mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT)>; \
+        keep-mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT)>; \
+    )
+
+RU_KEY(a, A, U)       // а
+RU_KEY(b, B, W)       // б
+RU_KEY(v, V, E)       // в
+RU_KEY(g, G, G)       // г
+RU_KEY(d, D, N)       // д
+RU_KEY(e, E, Y)       // е
+                      // ё
+RU_KEY(zh, ZH, S)     // ж
+RU_KEY(z, Z, L)       // з
+RU_KEY(i, I, X)       // и
+RU_KEY(ii, II, SQT)   // й
+RU_KEY(k, K, P)       // к
+RU_KEY(l, L, T)       // л
+RU_KEY(m, M, K)       // м
+RU_KEY(n, N, F)       // н
+RU_KEY(o, O, H)       // о
+RU_KEY(p, P, I)       // п
+RU_KEY(r, R, D)       // р
+RU_KEY(s, S, J)       // с
+RU_KEY(t, T, B)       // т
+RU_KEY(u, U, DOT)     // у
+RU_KEY(f, F, A)       // ф
+                      // х
+RU_KEY(ts, TS, COMMA) // ц
+RU_KEY(ch, CH, Q)     // ч
+RU_KEY(sh, SH, C)     // ш
+RU_KEY(shch, SHCH, R) // щ
+                      // ъ
+RU_KEY(yi, YI, O)     // ы
+RU_KEY(soft, SOFT, M) // ь
+RU_KEY(ye, YE, Z)     // э
+RU_KEY(yu, YU, V)     // ю
+RU_KEY(ya, YA, DQT)   // я
+
 // Homerow mods
 MAKE_HRM(ru_f_hrm,  &kp, &ru_f,  KEYS_R KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
-MAKE_HRM(ru_bi_hrm, &kp, &ru_bi, KEYS_R KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
+MAKE_HRM(ru_yi_hrm, &kp, &ru_yi, KEYS_R KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
 MAKE_HRM(ru_v_hrm,  &kp, &ru_v,  KEYS_R KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
 MAKE_HRM(ru_a_hrm,  &kp, &ru_a,  KEYS_R KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE)
 
@@ -9,19 +138,46 @@ MAKE_HRM(ru_l_hrm,  &kp, &ru_l,  KEYS_L KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_
 MAKE_HRM(ru_d_hrm,  &kp, &ru_d,  KEYS_L KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
 MAKE_HRM(ru_zh_hrm, &kp, &ru_zh, KEYS_L KEYS_TC, HRM_TAPPING_TERM,        PRIOR_IDLE)
 
-#define RU_F(MOD)  &ru_f_hrm  MOD 0
-#define RU_BI(MOD) &ru_bi_hrm MOD 0
-#define RU_V(MOD)  &ru_v_hrm  MOD 0
-#define RU_A(MOD)  &ru_a_hrm  MOD 0
+#define RU_F_HRM  &ru_f_hrm  LALT  0
+#define RU_YI_HRM &ru_yi_hrm LCTRL 0
+#define RU_V_HRM  &ru_v_hrm  LCMD  0
+#define RU_A_HRM  &ru_a_hrm  LSHFT 0
 
-#define RU_O(MOD)  &ru_o_hrm  MOD 0
-#define RU_L(MOD)  &ru_l_hrm  MOD 0
-#define RU_D(MOD)  &ru_d_hrm  MOD 0
-#define RU_ZH(MOD) &ru_zh_hrm MOD 0
+#define RU_O_HRM  &ru_o_hrm  RSHFT 0
+#define RU_L_HRM  &ru_l_hrm  RCMD  0
+#define RU_D_HRM  &ru_d_hrm  RCTRL 0
+#define RU_ZH_HRM &ru_zh_hrm RALT  0
 
-// Raise layer
-ZMK_HOLD_TAP(ru_r_raise,
-   tapping-term-ms = <TAPPING_TERM>;
-   bindings = <&mo>, <&ru_r>;
+// --- Misc
+
+// Curly / Square brackets
+ZMK_MOD_MORPH(ru_cur_sqr_l,
+    bindings = <&kp RU_LEFT_BRACE>, <&kp RU_LEFT_BRACKET>;
+    mods = <MOD_LSFT>;
 )
-#define RU_R_RAISE &ru_r_raise RU2 0
+
+ZMK_MOD_MORPH(ru_cur_sqr_r,
+    bindings = <&kp RU_RIGHT_BRACE>, <&kp RU_RIGHT_BRACKET>;
+    mods = <MOD_LSFT>;
+)
+
+// Parenthesis / Angle brackets
+ZMK_MOD_MORPH(ru_par_ang_l,
+    bindings = <&kp RU_LEFT_PARENTHESIS>, <&kp RU_LESS_THAN>;
+    mods = <MOD_LSFT>;
+)
+
+ZMK_MOD_MORPH(ru_par_ang_r,
+    bindings = <&kp RU_RIGHT_PARENTHESIS>, <&kp RU_GREATER_THAN>;
+    mods = <MOD_LSFT>;
+)
+
+// ->
+ZMK_MACRO(ru_arrow,
+    bindings = <&kp RU_MINUS &kp RU_GREATER_THAN>;
+)
+
+// =>
+ZMK_MACRO(ru_fat_arrow,
+    bindings = <&kp RU_EQUAL &kp RU_GREATER_THAN>;
+)
