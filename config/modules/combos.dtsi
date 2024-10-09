@@ -1,3 +1,2 @@
-ZMK_COMBO(RU, &lang_switch, LH1 RH1, ALL, 100)
 ZMK_COMBO(Homerow, &kp LG(LC(LA(G))), LH0 RH0, ALL)
 ZMK_COMBO(SysLayer, &mo SYS, RT1 RT2 RT3, BASE RU_BASE, 100)

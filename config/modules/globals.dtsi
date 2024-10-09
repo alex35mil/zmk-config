@@ -5,11 +5,11 @@
 #define QUICK_TAP  175
 #define PRIOR_IDLE 90
 
-#define __               &trans
-#define ____             &trans
-#define _XX_             &none
-#define XXXXXXXXXXXXXXXX &none
-#define _TODO_           &none
+#define __                &trans // key on one of 6th cols that don't exist on my keyboard
+#define _____             &trans // transparent key
+#define _XXX_             &none  // noop key
+#define XXXXXXXXXXXXXXXXX &none  // key on a layer that activates this layer
+#define _TODO_            &none  // TODO key
 
 #define HYPER LS(LC(LG(LALT)))
 

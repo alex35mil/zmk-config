@@ -1,9 +1,15 @@
-#define HOST_OS_LANG_SWITCH LG(LC(LA(SPACE)))
-#define LANG HOST_OS_LANG_SWITCH
+// --- Switcher
+
+#define HOST_LANG_SWITCH LG(LC(LA(SPACE)))
 
 ZMK_MACRO(lang_switch,
-    bindings = <&tog RU_BASE &kp HOST_OS_LANG_SWITCH>;
+    bindings = <&tog RU_BASE &kp HOST_LANG_SWITCH>;
 )
+
+MAKE_HRM(lang_switch_hrm, &kp, &lang_switch, KEYS_R KEYS_TC, HRM_TAPPING_TERM, PRIOR_IDLE)
+
+#define LANG_SWITCH(MOD) &lang_switch_hrm MOD 0
+#define LANG_FIX HOST_LANG_SWITCH
 
 // --- Charmaps
 
@@ -149,6 +155,30 @@ MAKE_HRM(ru_zh_hrm, &kp, &ru_zh, KEYS_L KEYS_TC, HRM_TAPPING_TERM,        PRIOR_
 #define RU_ZH_HRM &ru_zh_hrm RALT  0
 
 // --- Misc
+
+// Dot
+ZMK_MOD_MORPH(ru_n5_dot,
+    bindings = <&mt LCMD N5>, <&kp RU_DOT>;
+    mods = <MOD_RSFT>;
+)
+
+// Comma
+ZMK_MOD_MORPH(ru_n6_comma,
+    bindings = <&mt LSHFT N6>, <&kp RU_COMMA>;
+    mods = <MOD_RSFT>;
+)
+
+// Single quote
+ZMK_MOD_MORPH(ru_n8_sqt,
+    bindings = <&kp N8>, <&kp RU_SQT>;
+    mods = <MOD_RSFT>;
+)
+
+// Double quote
+ZMK_MOD_MORPH(ru_n9_dqt,
+    bindings = <&kp N9>, <&kp RU_DQT>;
+    mods = <MOD_RSFT>;
+)
 
 // Curly / Square brackets
 ZMK_MOD_MORPH(ru_cur_sqr_l,

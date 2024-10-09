@@ -1,3 +1,25 @@
+// Curly / Square brackets
+ZMK_MOD_MORPH(cur_sqr_l,
+    bindings = <&kp LEFT_BRACE>, <&kp LEFT_BRACKET>;
+    mods = <MOD_LSFT>;
+)
+
+ZMK_MOD_MORPH(cur_sqr_r,
+    bindings = <&kp RIGHT_BRACE>, <&kp RIGHT_BRACKET>;
+    mods = <MOD_LSFT>;
+)
+
+// Parenthesis / Angle brackets
+ZMK_MOD_MORPH(par_ang_l,
+    bindings = <&kp LEFT_PARENTHESIS>, <&kp LESS_THAN>;
+    mods = <MOD_LSFT>;
+)
+
+ZMK_MOD_MORPH(par_ang_r,
+    bindings = <&kp RIGHT_PARENTHESIS>, <&kp GREATER_THAN>;
+    mods = <MOD_LSFT>;
+)
+
 // ->
 ZMK_MACRO(arrow,
     bindings = <&kp MINUS &kp GT>;
