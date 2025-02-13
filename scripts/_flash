@@ -22,7 +22,7 @@ fi
 
 echo "❯ Flashing the $SIDE side..."
 
-FIRMWARE_FILE="corne_${SIDE} nice_view_adapter nice_view-nice_nano_v2-zmk.uf2"
+FIRMWARE_FILE="corne_${SIDE} nice_view_adapter nice_view_gem-nice_nano_v2-zmk.uf2"
 
 find_keyboard() {
     local disk_id
