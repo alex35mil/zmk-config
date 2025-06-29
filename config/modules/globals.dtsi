@@ -16,5 +16,5 @@
 #define MENU_FOCUS LC(F2)
 #define TRAY_FOCUS F20
 #define MISSION_CONTROL LG(LC(LA(M)))
-#define STAGE_MANAGER LG(LC(LA(S)))
+#define STAGE_MANAGER LG(LC(LA(F)))
 #define WIDGETS LG(LC(LA(N)))
