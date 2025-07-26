@@ -30,9 +30,9 @@ This will:
 #### Local Build & Flash
 ```bash
 # Build firmware
-mise exec -- just build left     # Build left side
-mise exec -- just build right    # Build right side
-mise exec -- just build-all      # Build both sides
+mise exec -- just build          # Build both sides (default)
+mise exec -- just build left     # Build left side only
+mise exec -- just build right    # Build right side only
 
 # Flash firmware (requires keyboard in bootloader mode)
 mise exec -- just flash left     # Flash left side
@@ -80,7 +80,7 @@ This repository uses **vanilla ZMK** (official zmkfirmware/zmk) with additional 
 
 ### Local Development (Recommended)
 1. Edit configuration files (primarily `corne.keymap` or module files)
-2. Build locally: `mise exec -- just build left`
+2. Build locally: `mise exec -- just build` (builds both sides)
 3. Flash directly: `mise exec -- just flash left`
 
 ### GitHub Actions (Backup)

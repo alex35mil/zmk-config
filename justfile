@@ -72,10 +72,18 @@ update:
     west update
     west zephyr-export
 
-# Build specific target: left or right
-build target:
+# Build firmware: specific target (left/right) or both if no target specified
+build target="":
     #!/usr/bin/env bash
     set -euo pipefail
+
+    if [ -z "{{target}}" ]; then
+        echo "🔨 Building both targets..."
+        just build left
+        just build right
+        exit 0
+    fi
+
     source .venv/bin/activate
 
     case {{target}} in
