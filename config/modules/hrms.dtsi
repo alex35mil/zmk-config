@@ -23,24 +23,3 @@ MAKE_HRM(hrmlm, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
 MAKE_HRM(hrmrm, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_MEDIUM, PRIOR_IDLE)
 MAKE_HRM(hrmlf, &kp, &kp, KEYS_R KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE)
 MAKE_HRM(hrmrf, &kp, &kp, KEYS_L KEYS_TC, HRM_TAPPING_TERM_FAST,   PRIOR_IDLE)
-
-// I'm on Dvorak and I'm hitting Cmd+S a lot. After long sessions, my pinky is not happy about it.
-// Since I don't use Cmd+H at all, it makes sense to swap `h` and `s` when Cmd/Ctrl/Opt mods are active.
-// [Including all of the mods, so it's easier to remember - with mods it's `s`, without mods it's `h`. And vice versa.]
-ZMK_MOD_MORPH(key_h_mm,
-    bindings = <&kp H>, <&kp S>;
-    mods = <(MOD_LGUI|MOD_LCTL|MOD_LALT)>;
-    keep-mods = <(MOD_LGUI|MOD_LCTL|MOD_LALT)>;
-)
-
-ZMK_MOD_MORPH(key_s_mm,
-    bindings = <&kp S>, <&kp H>;
-    mods = <(MOD_LGUI|MOD_LCTL|MOD_LALT)>;
-    keep-mods = <(MOD_LGUI|MOD_LCTL|MOD_LALT)>;
-)
-
-MAKE_HRM(hrmrf_h, &kp, &key_h_mm, KEYS_L KEYS_TC, HRM_TAPPING_TERM_FAST, PRIOR_IDLE)
-MAKE_HRM(hrmr_s,  &kp, &key_s_mm, KEYS_L KEYS_TC, HRM_TAPPING_TERM,      PRIOR_IDLE)
-
-#define H_HRM &hrmrf_h RSHFT 0
-#define S_HRM &hrmr_s RALT 0
