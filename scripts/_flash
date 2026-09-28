@@ -57,7 +57,7 @@ KEYBOARD=$(find_keyboard)
 echo "Keyboard found at: $KEYBOARD"
 
 # Attempt to copy the firmware to the keyboard
-error_msg=$(cp "$FIRMWARE_DIR/$FIRMWARE_FILE" "$KEYBOARD/" 2>&1) || {
+error_msg=$(cp -X "$FIRMWARE_DIR/$FIRMWARE_FILE" "$KEYBOARD/" 2>&1) || {
     if [[ $error_msg == *"fcopyfile failed: Input/output error"* ]]; then
         # macOS errors out on cp to the NICENANO, but it's actually successful
         :

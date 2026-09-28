@@ -159,7 +159,7 @@ flash target:
 
     # Copy firmware to keyboard
     echo "❯ Copying {{target}} side firmware to NICENANO..."
-    error_msg=$(cp firmware/{{target}}.uf2 "$KEYBOARD/" 2>&1) || {
+    error_msg=$(cp -X firmware/{{target}}.uf2 "$KEYBOARD/" 2>&1) || {
         if [[ $error_msg == *"fcopyfile failed: Input/output error"* ]]; then
             # macOS errors out on cp to the NICENANO, but it's actually successful
             :
