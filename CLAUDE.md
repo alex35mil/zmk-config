@@ -10,10 +10,12 @@ This is a ZMK (Zephyr-based Mechanical Keyboard) configuration repository for a 
 
 ### Prerequisites
 - [mise](https://mise.jdx.dev/) for tool version management and environment auto-activation
-- System dependencies: `cmake`, `dtc` (device tree compiler)
 
 ### First-time Setup
 ```bash
+# Install project tools
+mise install
+
 # Initialize local development environment
 mise exec -- just init
 ```
